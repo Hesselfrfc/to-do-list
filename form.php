@@ -53,6 +53,26 @@
                 <div class="invalid-feedback">Kies een status.</div>
             <? } ?>
     </div>
+    <div> 
+        <label for="listId"></label>
+            <? if(empty($dataList["listName"])) {?>
+                <select placeholder="Kies een lijst" class="form-control" name="listId" required>
+                    <option value=""> Kies een lijst  </option>
+                <? foreach ($listInfo as $data) { ?>
+                    <option value="<?= $data["id"];?>" > <?= $data["listName"];?></option>
+                <? } ?>
+                </select>
+                <div class="invalid-feedback">Kies een lijst.</div>
+            <? }else { ?>
+                <select placeholder="Kies een status" class="form-control" name="listId" required>
+                    <option value="<?= $dataList["id"];?>"> <?=$dataList["listName"]?></option>
+                <? foreach ($listInfo as $data) { ?>
+                    <option value="<?= $data["id"];?>" > <?= $data["listName"];?></option>
+                <? } ?>
+                </select>
+                <div class="invalid-feedback">Kies een lijst.</div>
+            <? } ?>
+    </div>
     <button type="submit" class="btn btn-primary"><?=$buttonText?></button>
 </form>
 

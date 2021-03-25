@@ -2,6 +2,7 @@
 
 include("includes/datalayer.php");
 $list=readTasks();
+$test=readLists();
 ?>
 
 <!DOCTYPE html>
@@ -13,15 +14,20 @@ $list=readTasks();
 </head>
 <body>
 	<div id = "container">
-		<button><a href="create.php">nieuw item toevoegen</a></button>
+	</div>
 
-		<? foreach ($list as $data) { ?>
-        	<ul>
-			<li><?= $data["name"] ?></li>
-			<li><?= $data["description"] ?></li>
-			</ul>
-			<? printf("<a class=\"btn btn-primary\" href=\"item.php?id=%u\">" , $data["taskId"]);?> Meer details</a>
-    	<? } ?>
+	<div id = "container">
+		<button><a href="createList.php">nieuwe lijst toevoegen</a></button>
+
+			<? foreach ($test as $data) { ?>
+				<div class="list_item" style="margin-top: 35px;">
+					<ul>
+					<li><?= $data["listName"] ?></li>
+					</ul>
+					<? printf("<a class=\"btn btn-primary\" href=\"list.php?id=%u\">" , $data["id"]);?> Meer details</a>
+				</div>
+    		<? } ?>
+		
 	</div>
 </body>
 </html>

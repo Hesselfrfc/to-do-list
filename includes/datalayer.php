@@ -46,6 +46,25 @@ function addList($listName){
     return $result;
 }
 
+function updateList($listName, $id){
+    $dbConnection = creatDatabaseConnection();
+    $stmt = $dbConnection->prepare("UPDATE lists SET listName=:listName WHERE id=:id");
+    $stmt->bindParam(':listName', $listName);
+    $stmt->bindParam(':id', $id);
+    $result = $stmt->execute();
+    $dbConnection = null;
+    return $result;
+}
+
+function deleteList($id){
+    $dbConnection = creatDatabaseConnection();
+    $stmt = $dbConnection->prepare("DELETE FROM lists WHERE id=:id");
+    $stmt->bindParam(':id', $id);
+    $result = $stmt->execute(); 
+    $dbConnection = null;
+    return $result;
+}
+
 function infoListTasks($id){
 	$dbConnection = creatDatabaseConnection();
 	$stmt = $dbConnection->prepare("SELECT tasks.*, lists.* from tasks LEFT JOIN lists on tasks.listId = lists.id WHERE listId=:id");

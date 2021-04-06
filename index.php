@@ -25,6 +25,8 @@ $test=readLists();
 					<li><?= $data["listName"] ?></li>
 					</ul>
 					<? printf("<a class=\"btn btn-primary\" href=\"list.php?id=%u\">" , $data["id"]);?> Meer details</a>
+					<? printf("<a class=\"btn btn-warning\" href=\"updateList.php?id=%u\">" , $data["id"]);?>Lijst aanpassen</a>
+					<? printf("<a class=\"btn btn-danger\" href=\"deleteList.php?id=%u\">" , $data["id"]);?>Lijst verwijderen</a>
 				</div>
     		<? } ?>
 		

@@ -24,7 +24,7 @@ $data = infoTask($_GET["id"]);
 		</ul>
 
         <a class="btn-lg btn-danger text-white" href="deleteItem.php?id=<?= $data["taskId"] ?>">delete item</a>
-        <a class="btn-lg btn-danger text-white" href="updateItem.php?id=<?= $data["taskId"] ?>">update item</a>
+        <a class="btn-lg btn-warning text-white" href="updateItem.php?id=<?= $data["taskId"] ?>">update item</a>
     </div>
 
 

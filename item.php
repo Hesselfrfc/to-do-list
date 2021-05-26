@@ -19,7 +19,7 @@ $data = infoTask($_GET["id"]);
         <h4>Dit zijn de gegevens van <?= $data["name"] ?></h4>
 			<li>Naam: <?= $data["name"] ?></li>
 			<li>Omschrijving: <?= $data["description"] ?></li>
-			<li>Tijd: <?= $data["time"] ?></li>
+			<li>Duur: <?= $data["time"] ?> minuten</li>
             <li>Status: <?= $data["statusName"] ?></li>
 		</ul>
 

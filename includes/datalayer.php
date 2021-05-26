@@ -67,7 +67,69 @@ function deleteList($id){
 
 function infoListTasks($id){
 	$dbConnection = creatDatabaseConnection();
-	$stmt = $dbConnection->prepare("SELECT tasks.*, lists.* from tasks LEFT JOIN lists on tasks.listId = lists.id WHERE listId=:id");
+	$stmt = $dbConnection->prepare("SELECT tasks.*, lists.*, status.* from tasks INNER JOIN lists ON tasks.listId = lists.id INNER JOIN status ON tasks.statusId = status.id WHERE listId=:id");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	$result = $stmt->fetchAll();
+	$dbConnection = null;
+	return $result;
+}
+
+
+function filterOnStatusNotFinished($id){
+	$dbConnection = creatDatabaseConnection();
+	$stmt = $dbConnection->prepare("SELECT tasks.*, lists.*, status.* from tasks INNER JOIN lists ON tasks.listId = lists.id INNER JOIN status ON tasks.statusId = status.id WHERE listId=:id AND statusId=1");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	$result = $stmt->fetchAll();
+	$dbConnection = null;
+	return $result;
+}
+
+function filterOnStatusBusy($id){
+	$dbConnection = creatDatabaseConnection();
+	$stmt = $dbConnection->prepare("SELECT tasks.*, lists.*, status.* from tasks INNER JOIN lists ON tasks.listId = lists.id INNER JOIN status ON tasks.statusId = status.id WHERE listId=:id AND statusId=2");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	$result = $stmt->fetchAll();
+	$dbConnection = null;
+	return $result;
+}
+
+function filterOnStatusFinished($id){
+	$dbConnection = creatDatabaseConnection();
+	$stmt = $dbConnection->prepare("SELECT tasks.*, lists.*, status.* from tasks INNER JOIN lists ON tasks.listId = lists.id INNER JOIN status ON tasks.statusId = status.id WHERE listId=:id AND statusId=3");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	$result = $stmt->fetchAll();
+	$dbConnection = null;
+	return $result;
+}
+
+
+function filterOnTimeAsc($id){
+	$dbConnection = creatDatabaseConnection();
+	$stmt = $dbConnection->prepare("SELECT tasks.*, lists.*, status.* from tasks INNER JOIN lists ON tasks.listId = lists.id INNER JOIN status ON tasks.statusId = status.id WHERE listId=:id ORDER BY time ASC");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	$result = $stmt->fetchAll();
+	$dbConnection = null;
+	return $result;
+}
+
+function filterOnTimeDesc($id){
+	$dbConnection = creatDatabaseConnection();
+	$stmt = $dbConnection->prepare("SELECT tasks.*, lists.*, status.* from tasks INNER JOIN lists ON tasks.listId = lists.id INNER JOIN status ON tasks.statusId = status.id WHERE listId=:id ORDER BY time DESC");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	$result = $stmt->fetchAll();
+	$dbConnection = null;
+	return $result;
+} 
+
+function sortTime($id){
+	$dbConnection = creatDatabaseConnection();
+	$stmt = $dbConnection->prepare("SELECT tasks.*, lists.* from tasks LEFT JOIN lists on tasks.listId = lists.id WHERE listId=:id ORDER BY time DESC");
 	$stmt->bindParam(':id', $id);
 	$stmt->execute();
 	$result = $stmt->fetchAll();

@@ -26,7 +26,8 @@ $test = infoList($_GET["id"]);
     <h1><?= $test["listName"] ?> </h1>
     <a href="create.php">nieuwe taak toevoegen</a><br/>
 
-    <p>Filter: </p><select id="filterTasks">
+    <p>Filter: </p>
+    <select id="filterTasks">
         <option id="showAllTasks" value="0">Laat alle taken zien</option>
         <option id="filterByTimeAsc" value="1">Filter op tijd oplopend</option>
         <option id="filterByTimeDesc" value="2">Filter op tijd aflopend</option>
